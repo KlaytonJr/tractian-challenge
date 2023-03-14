@@ -3,6 +3,8 @@ import React from "react";
 import { Timeline, List } from "antd";
 import { AssetDTO, Status } from "../../interfaces/AssetDTO";
 import moment from "moment";
+import AssetPill from "../AssetPill";
+import "./style.css";
 
 interface Props {
     data: AssetDTO[]
@@ -23,9 +25,24 @@ function ListAssets({ data }: Props) {
                 return "grey";
         }
     }
+    
+    function defineStatus(status: Status | string) {
+        switch(status) {
+            case Status.inOperation:
+                return "Em operação";
+            case Status.inDowntime:
+                return "Inativo";
+                case Status.inAlert:
+                return "Em alerta";
+            case Status.unplannedStop:
+                return "Parada inesperada";
+            default:
+                return "Status não definido";
+        }
+    }
 
   return (
-    <div className="App">
+    <div className="ListAssets">
         <List
             itemLayout="vertical"
             size="large"
@@ -45,15 +62,17 @@ function ListAssets({ data }: Props) {
                 <List.Item
                     key={item.id}
                     extra={
-                    <img
-                        width={272}
-                        alt={item.name}
-                        src={item.image}
-                    />
+                        <div className="image-container">
+                            <img
+                                width={272}
+                                alt={item.name}
+                                src={item.image}
+                            />
+                        </div>
                     }
                 >
+                    <AssetPill status={defineStatus(item.status)} color={defineColor(item.status)} />
                     <List.Item.Meta
-                        // avatar={<Avatar src={item.image} />}
                         title={<a href={item.name}>{item.name}</a>}
                         description={item.model}
                     />

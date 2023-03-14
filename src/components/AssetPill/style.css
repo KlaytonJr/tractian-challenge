@@ -1,0 +1,24 @@
+.asset-pill {
+    width: fit-content;
+    height: fit-content;
+    padding: 2px 15px;
+    border-radius: 15px;
+}
+
+.blue-pill {
+    background-color: blue;
+}
+.red-pill {
+    background-color: red;
+}
+.green-pill {
+    background-color: green;
+}
+.grey-pill {
+    background-color: grey;
+}
+
+.text-white {
+    color: #fff;
+    font-size: 12px;
+}
