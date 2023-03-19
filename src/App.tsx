@@ -1,7 +1,10 @@
 import React from "react";
+import Header from "./components/Header";
 import "./App.css";
 import ListAssets from "./components/ListAssets";
-import { AssetDTO } from "./interfaces/AssetDTO";
+import { AssetDTO } from "./dto/AssetDTO";
+import ListGeneric from "./components/ListUnits";
+import RoutesView from "./routes/routes";
 
 
 function App() {
@@ -56,7 +59,12 @@ function App() {
 
   return (
     <div className="App">
-        <ListAssets data={data} />
+        <RoutesView/>
+        {/* <Header />
+        <ListAssets className="assets-list" data={data} />
+        <ListGeneric className="user" title="Usuários" data={[ "user", "user 2", "user 3", "user 4" ]} />
+        <ListGeneric className="companies" title="Empresas" data={[ "companie", "companie 2" ]} />
+        <ListGeneric className="unit" title="Unidades" data={[ "unit", "unit 2" ]} /> */}
     </div>
   );
 }

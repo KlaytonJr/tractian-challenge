@@ -1,0 +1,8 @@
+.Workorders {
+    box-sizing: border-box;
+    height: calc(100vh - 60px);
+    padding: 0 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

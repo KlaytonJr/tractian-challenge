@@ -1,4 +1,39 @@
 .App {
-  padding: 30px;
+    height: 100%;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 30% 30% 40%;
+  grid-column-gap: 50px;
+  grid-row-gap: 10px;
+}
+
+.header {
+    grid-area: header;
+}
+
+.assets-list {
+    grid-area: assets-list;
+}
+
+.user {
+    grid-area: user;
+}
+
+.companies {
+    grid-area: companies;
+}
+
+.unit {
+    grid-area: unit;
+}
+
+.grid-template-areas-1 {
+	grid-template-areas:
+		"header header header"
+		"assets-list assets-list user"
+		"assets-list assets-list companies"
+		"assets-list assets-list unit"
+	;
+}

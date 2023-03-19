@@ -30,4 +30,5 @@ export enum Status {
     inDowntime = "inDowntime",
     inAlert = "inAlert",
     unplannedStop = "unplannedStop",
+    plannedStop = "plannedStop",
 }
