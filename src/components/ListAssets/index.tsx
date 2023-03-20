@@ -7,6 +7,7 @@ import AssetPill from "../AssetPill";
 import "./style.css";
 import { defineStatus, defineColor } from "../../utils/stringFunctions";
 import AssetsService from "../../services/AssetsService";
+import HealthScore from "../HealthScore";
 
 interface Props {
     data: AssetDTO[],
@@ -17,6 +18,25 @@ interface Props {
 function ListAssets({ data, className, resetGet }: Props) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selected, setSelected] = useState<AssetDTO | undefined>(undefined);
+
+    // Highcharts
+    const plotOptions = {
+        solidgauge: {
+          dataLabels: {
+            y: 5,
+            borderWidth: 0,
+            useHTML: true
+          }
+        }
+    };
+    
+    const dataLabels = {
+        format: '<div style="text-align:center"><span style="font-size:25px;color:black">{y}</span><br/><span style="font-size:12px;color:silver">km/h</span></div>',
+        y: -50
+    };
+    const tooltip = {
+        valueSuffix: ' km/h'
+    }
     
     // Form
     const [editMode, setEditMode] = useState(false);
@@ -150,8 +170,9 @@ function ListAssets({ data, className, resetGet }: Props) {
                     <p><b>Status: </b>{selected?.status && defineStatus(selected?.status)}</p>
         
                     <h3>Pontuação da Saúde</h3>
-                    <meter value={selected?.healthscore} min="0" max="100" /> <span>{selected?.healthscore}</span>
-        
+                    {/* <meter value={selected?.healthscore} min="0" max="100" /> <span>{selected?.healthscore}</span> */}
+                    {selected?.healthscore && <HealthScore score={selected?.healthscore} />}
+
                     <h3>Métricas</h3>
                     <p><b>Último tempo de atividade em: </b>{moment(selected?.metrics.lastUptimeAt).format("DD/MM/YYYY HH:MM")}</p>
                     <p><b>Tempo total de coleta: </b>{selected?.metrics.totalCollectsUptime}</p>
